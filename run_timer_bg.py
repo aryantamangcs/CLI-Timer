@@ -1,3 +1,5 @@
+#! /bin/python3
+
 import subprocess
 import sys
 
@@ -7,8 +9,10 @@ if len(sys.argv) <= 1:
 else:
     minutes = sys.argv[1]
 
-subprocess.Popen(
-    [sys.executable, "-u", "-m", "src", str(minutes)],
-    stdout=open("timer.log", "w"),
-    stderr=subprocess.STDOUT,
-)
+with open("timer.log", "w", encoding="utf-8") as log_file:
+
+    subprocess.Popen(
+        [sys.executable, "-u", "-m", "src", str(minutes)],
+        stdout=log_file,
+        stderr=subprocess.STDOUT,
+    )
